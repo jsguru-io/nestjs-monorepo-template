@@ -1,0 +1,60 @@
+version: '3.7'
+
+services:
+  api-gateway:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+        BUILD_APP: api-gateway
+    command: 'yarn start:dev api-gateway --debug 0.0.0.0:${API_GATEWAY_DEBUG_PORT}'
+    ports:
+      - '${API_GATEWAY_OUT_PORT}:${API_GATEWAY_PORT}'
+      - '${API_GATEWAY_DEBUG_OUT_PORT}:${API_GATEWAY_DEBUG_PORT}'
+    volumes:
+      - ./apps:/app/apps
+      - ./libs:/app/libs
+    depends_on:
+      - nats
+      - postgres
+
+  users:
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+      args:
+        BUILD_APP: users
+    command: 'yarn start:dev users'
+    volumes:
+      - ./apps:/app/apps
+      - ./libs:/app/libs
+    depends_on:
+      - nats
+      - postgres
+
+  nats:
+    image: 'nats:0.8.0'
+    expose:
+      - "4222"
+    ports:
+      - "8222:8222"
+    hostname: nats-server
+
+  postgres:
+    image: postgres:14.0-alpine3.14
+    env_file:
+      - .env
+    volumes:
+      - ./db-data:/var/lib/postgresql/data/
+    environment:
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_PORT=${DB_PORT}
+    ports:
+      - '${DB_OUT_PORT}:${DB_PORT}'
+

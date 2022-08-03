@@ -18,12 +18,24 @@
     "test:watch": "jest --watch",
     "test:cov": "jest --coverage",
     "test:debug": "node --inspect-brk -r tsconfig-paths/register -r ts-node/register node_modules/.bin/jest --runInBand",
-    "test:e2e": "jest --config ./apps/api-gateway/test/jest-e2e.json"
+    "test:e2e": "jest --config ./apps/api-gateway/test/jest-e2e.json",
+    "command": "CLI_PATH=./libs/cli/src/main.ts npx nestjs-command",
+    "scaffold": "yarn command scaffold",
+    "db:migrate": "yarn command migrate",
+    "db:migrate:down": "yarn command migrate:down",
+    "db:migrate:reset": "yarn command migrate:reset",
+    "db:migration:create": "yarn command migration:create"
   },
   "dependencies": {
+    "@jsgurucompany/jsg-nestjs-common": "1.1.3",
     "@nestjs/common": "^8.0.0",
+    "@nestjs/config": "^2.2.0",
     "@nestjs/core": "^8.0.0",
+    "@nestjs/microservices": "^9.0.8",
     "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/swagger": "^6.0.5",
+    "nats": "^2.7.1",
+    "nestjs-command": "^3.1.2",
     "reflect-metadata": "^0.1.13",
     "rimraf": "^3.0.2",
     "rxjs": "^7.2.0"
@@ -68,7 +80,14 @@
     "coverageDirectory": "./coverage",
     "testEnvironment": "node",
     "roots": [
-      "<rootDir>/apps/"
-    ]
+      "<rootDir>/apps/",
+      "<rootDir>/libs/"
+    ],
+    "moduleNameMapper": {
+      "^@app/database(|/.*)$": "<rootDir>/libs/database/src/$1",
+      "^@app/user(|/.*)$": "<rootDir>/libs/user/src/$1",
+      "^@app/cli(|/.*)$": "<rootDir>/libs/cli/src/$1",
+      "^@app/nats-communicator(|/.*)$": "<rootDir>/libs/nats-communicator/src/$1"
+    }
   }
 }

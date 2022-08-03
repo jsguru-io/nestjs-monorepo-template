@@ -1,0 +1,13 @@
+FROM node:16-alpine3.14 AS builder
+
+ARG BUILD_APP
+
+WORKDIR /app
+COPY ./package.json ./
+COPY ./yarn.lock ./
+RUN yarn install
+COPY . .
+
+RUN yarn build ${BUILD_APP}
+
+CMD ["yarn", "start:dev", "${BUILD_APP}"]

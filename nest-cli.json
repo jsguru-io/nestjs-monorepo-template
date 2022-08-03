@@ -25,6 +25,42 @@
       "compilerOptions": {
         "tsConfigPath": "apps/users/tsconfig.app.json"
       }
+    },
+    "database": {
+      "type": "library",
+      "root": "libs/database",
+      "entryFile": "index",
+      "sourceRoot": "libs/database/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/database/tsconfig.lib.json"
+      }
+    },
+    "user": {
+      "type": "library",
+      "root": "libs/user",
+      "entryFile": "index",
+      "sourceRoot": "libs/user/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/user/tsconfig.lib.json"
+      }
+    },
+    "cli": {
+      "type": "library",
+      "root": "libs/cli",
+      "entryFile": "index",
+      "sourceRoot": "libs/cli/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/cli/tsconfig.lib.json"
+      }
+    },
+    "nats-communicator": {
+      "type": "library",
+      "root": "libs/nats-communicator",
+      "entryFile": "index",
+      "sourceRoot": "libs/nats-communicator/src",
+      "compilerOptions": {
+        "tsConfigPath": "libs/nats-communicator/tsconfig.lib.json"
+      }
     }
   }
 }

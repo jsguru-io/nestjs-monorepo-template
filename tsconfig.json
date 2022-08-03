@@ -17,6 +17,31 @@
     "strictBindCallApply": false,
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
-    "paths": {}
+    "paths": {
+      "@app/database": [
+        "libs/database/src"
+      ],
+      "@app/database/*": [
+        "libs/database/src/*"
+      ],
+      "@app/user": [
+        "libs/user/src"
+      ],
+      "@app/user/*": [
+        "libs/user/src/*"
+      ],
+      "@app/cli": [
+        "libs/cli/src"
+      ],
+      "@app/cli/*": [
+        "libs/cli/src/*"
+      ],
+      "@app/nats-communicator": [
+        "libs/nats-communicator/src"
+      ],
+      "@app/nats-communicator/*": [
+        "libs/nats-communicator/src/*"
+      ]
+    }
   }
 }
