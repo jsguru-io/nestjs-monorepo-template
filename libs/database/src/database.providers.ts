@@ -1,4 +1,4 @@
-import { BaseRepository, ModelCtor } from '@jsgurucompany/jsg-nestjs-common';
+import { ModelCtor } from '@jsgurucompany/jsg-nestjs-common';
 import { User, UserRepository } from '@app/user';
 import { Provider } from '@nestjs/common';
 
