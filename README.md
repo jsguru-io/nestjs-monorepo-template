@@ -160,5 +160,10 @@ yarn db:migration:create create_products_table
 ```
 And change the schema inside migration accordingly.
 
+To migrate, and execute the following:
+```shell
+docker-compose exec api-gateway sh -c "yarn db:migrate"
+```
+
 ### API testing
 API tests can be located inside `api-gateway/test` folder and they can similar to those ones in classic [nestjs-template](https://github.com/jsguru-io/nestjs-template/tree/master/test)

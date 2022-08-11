@@ -29,7 +29,7 @@ import { ConfigModule, ConfigService } from '@nestjs/config';
           },
           migrator: {
             path: `${__dirname}/../migrations`,
-            glob: '../**/migrations/*.migration.ts',
+            glob: 'libs/**/migrations/*.migration.ts',
           },
         };
       },
